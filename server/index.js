@@ -6,7 +6,7 @@ const loadSeed = require('./loadSeed');
 const {getSubmissions} = require('./services/submissions');
 
 const app = express();
-const port = 3000;
+const port = 4000;
 const eraseDatabaseOnSync = false;
 
 app.use(bodyParser.urlencoded({ extended: false }));
