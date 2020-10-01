@@ -4,16 +4,20 @@ const {Answer, Submission, Question} = db.models;
 
 exports.getSubmissions = query => {
   let searchOptions = {
-    order: [[Submission, 'Date', 'desc']],include: [{
-      model: Question
-    },{
-      model: Submission
+    order: [
+      ['Date', 'desc']
+    ], 
+    include: [{
+      model: Answer,
+      include: [{
+        model: Question
+      }]
     }]
   };
 
   if (query) {
     if (query.q) {
-      searchOptions.include[1].where = {
+      searchOptions.where = {
         Address: {
           [Sequelize.Op.iLike]: '%' + query.q + '%'
         }
@@ -21,7 +25,7 @@ exports.getSubmissions = query => {
     }
   }
 
-  return Answer.findAll({
+  return Submission.findAll({
     limit: 10,
     ...searchOptions
   })
