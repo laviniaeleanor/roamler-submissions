@@ -27,9 +27,9 @@ app.use(function(req, res, next) {
 });
 
 
-app.get('/submissions', (req, res) => {
-  const {query} = req;
-  getSubmissions(query)
+app.get('/submissions/:page?', (req, res) => {
+  const {query, params: {page}} = req;
+  getSubmissions({query, page})
     .then(submissions => res.json(submissions))
     .catch(err => console.error(err));
 })

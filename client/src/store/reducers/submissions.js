@@ -10,7 +10,7 @@ export const submissions = (state = {data: []}, {type, payload}) => {
     return {...state, loading: true};
 
     case SUBMISSIONS_SUCCESS:
-    return {loading: false, data: [...payload.rows, ...state.data]};
+    return {loading: false, data: [...payload.rows]};
 
     case SUBMISSIONS_FAILURE:
     return {...state, loading: false, error: true};

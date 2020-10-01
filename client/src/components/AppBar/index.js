@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 export default function ButtonAppBar() {
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <img 
           alt="Roamler logo" 

@@ -14,6 +14,7 @@ export const Header = styled.div`
   justify-content: center;
   color: #fff;
   flex-direction: column;
+  margin-top: 64px;
   
   h1 {
     font-weight: 300;

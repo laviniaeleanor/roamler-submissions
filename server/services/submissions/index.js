@@ -3,7 +3,8 @@ const db = require('../../sequelize')
 const {Answer, Submission, Question} = db.models;
 
 exports.getSubmissions = options => {
-  const {query, offset} = options;
+  const {query, page = 1} = options;
+  const offset = page > 0 ? (page - 1) * 10 : 0;
 
   let searchOptions = {
     order: [
@@ -30,6 +31,7 @@ exports.getSubmissions = options => {
   return Submission.findAndCountAll({
     limit: 10,
     offset,
+    distinct: true,
     ...searchOptions
   })
 };
