@@ -6,13 +6,11 @@ export const FETCH_SUBMISSIONS = 'FETCH_SUBMISSIONS';
 export const SUBMISSIONS_SUCCESS = 'SUBMISSIONS_SUCCESS';
 export const SUBMISSIONS_FAILURE = 'SUBMISSIONS_FAILURE';
 
-export const getSubmissions = () => dispatch => {
+export const getSubmissions = (page = 1) => dispatch => {
   dispatch({type: FETCH_SUBMISSIONS});
 
-  const page = window.location.pathname !== '/' ? window.location.pathname : '/1';
-
   request
-    .get(`${baseUrl}/submissions${page}`)
+    .get(`${baseUrl}/submissions/${page}`)
     .then(res => {
       console.log(res)
       dispatch({

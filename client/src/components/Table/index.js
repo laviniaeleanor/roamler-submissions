@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
+
 import {
   Table,
   TableBody,
@@ -9,16 +10,23 @@ import {
   TableRow
 } from '@material-ui/core';
 import ExpandableRow from '../ExpandableRow';
+import TableNavigation from '../TableNavigation';
 
 import {getDate, getTime} from '../../utils/time';
 
 const useStyles = makeStyles({
+  tableContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   table: {
-    height: '100%'
+    height: '100%',
+    maxWidth: 800
   },
 });
 
-function createData(data) {
+const createData = data => {
   return {
     number: data.SubmissionId,
     date: getDate(data.Date),
@@ -35,12 +43,12 @@ function createData(data) {
 
 const BasicTable = props => {
   const classes = useStyles();
-  const {data} = props;
+  const {data, pages} = props;
 
   const rows = data && data.map(submission => createData(submission));
 
   return (
-    <TableContainer>
+    <TableContainer className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -49,6 +57,9 @@ const BasicTable = props => {
             <TableCell>Date</TableCell>
             <TableCell>Time</TableCell>
             <TableCell>Address</TableCell>
+            <TableCell style={{display: 'flex'}}>
+              <TableNavigation pages={pages}/>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

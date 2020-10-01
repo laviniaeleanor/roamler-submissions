@@ -4,7 +4,6 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider} from '@material-ui/core/styles';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {Provider} from 'react-redux';
 import theme from './theme';
 import store from './store';
@@ -14,9 +13,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
-          <Route path="/:page?" component={App} />
-        </Router>
+        <App />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,

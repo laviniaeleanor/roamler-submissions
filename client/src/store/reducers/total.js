@@ -10,7 +10,7 @@ export const total = (state = {count: 0}, {type, payload}) => {
     return {...state, loading: true};
 
     case SUBMISSIONS_SUCCESS:
-    return {loading: false, count: payload.count};
+    return {loading: false, count: payload.count, pages: Math.ceil(payload.count / 10)};
 
     case SUBMISSIONS_FAILURE:
     return {...state, loading: false, error: true};

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 import {App, Header} from './styles';
@@ -9,19 +9,19 @@ import {getSubmissions} from '../../store/actions/submissions';
 
 const AppComponent = props => {
   const {submissions, total, getSubmissions} = props;
-
-  useEffect(() => {
-    getSubmissions();
-  }, []);
+  
+  React.useEffect(() => {
+    getSubmissions(1);
+  }, [getSubmissions]);
 
   return (
     <App>
       <AppBar />
       <Header>
         <h1>Roamler Submissions</h1>
-        {total.count && <h2>Total: {total.count}</h2>}
+        {!!total.count && <h2>Total: {total.count}</h2>}
       </Header>
-      <Table data={submissions.data}/>
+      <Table data={submissions.data} pages={total.pages}/>
     </App>
   );
 }
