@@ -16,7 +16,8 @@ export const getSubmissions = () => dispatch => {
       dispatch({
         type: SUBMISSIONS_SUCCESS,
         payload: res.body
-      })
+      });
+
     })
     .catch(err => {
       console.error(err);

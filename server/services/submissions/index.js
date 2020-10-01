@@ -2,7 +2,9 @@ const Sequelize = require('sequelize');
 const db = require('../../sequelize')
 const {Answer, Submission, Question} = db.models;
 
-exports.getSubmissions = query => {
+exports.getSubmissions = options => {
+  const {query, offset} = options;
+
   let searchOptions = {
     order: [
       ['Date', 'desc']
@@ -25,8 +27,9 @@ exports.getSubmissions = query => {
     }
   }
 
-  return Submission.findAll({
+  return Submission.findAndCountAll({
     limit: 10,
+    offset,
     ...searchOptions
   })
 };
