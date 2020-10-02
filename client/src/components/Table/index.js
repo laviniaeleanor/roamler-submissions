@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 
 import {
@@ -7,12 +8,14 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
+  TableSortLabel
 } from '@material-ui/core';
 import ExpandableRow from '../ExpandableRow';
 import TableNavigation from '../TableNavigation';
 
-import {getDate, getTime} from '../../utils/time';
+import {formatData} from '../../utils';
+import {toggleSortDate} from '../../store/actions/params';
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -24,40 +27,38 @@ const useStyles = makeStyles({
     height: '100%',
     maxWidth: 800
   },
+  tableHead: {
+    fontFamily: 'Montserrat',
+    fontSize: 16,
+    fontWeight: 700,
+    color: '#555'
+  }
 });
-
-const createData = data => {
-  return {
-    number: data.SubmissionId,
-    date: getDate(data.Date),
-    time: getTime(data.Date),
-    address: data.Address,
-    answers: data.answers
-      .sort((a, b) => a.question.Index - b.question.Index)
-      .map(answer => ({
-        question: answer.question.Text,
-        answer: answer.Text
-      }))
-  };
-}
 
 const BasicTable = props => {
   const classes = useStyles();
-  const {data, pages} = props;
+  const {data, pages, order, toggleSortDate} = props;
 
-  const rows = data && data.map(submission => createData(submission));
+  const rows = formatData(data);
 
   return (
     <TableContainer className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell />
-            <TableCell align="right">#</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Time</TableCell>
-            <TableCell>Address</TableCell>
-            <TableCell style={{display: 'flex'}}>
+            <TableCell className={classes.tableHead} align="right">ID</TableCell>
+            <TableCell className={classes.tableHead}>
+              <TableSortLabel
+                active
+                direction={order}
+                onClick={toggleSortDate}
+              >
+                Date
+              </TableSortLabel>
+            </TableCell>
+            <TableCell className={classes.tableHead}>Time</TableCell>
+            <TableCell className={classes.tableHead}>Address</TableCell>
+            <TableCell>
               <TableNavigation pages={pages}/>
             </TableCell>
           </TableRow>
@@ -72,4 +73,10 @@ const BasicTable = props => {
   );
 }
 
-export default BasicTable;
+const mapStateToProps = state => ({
+  order: state.params.order,
+  pages: state.total.pages,
+  data: state.submissions.data
+});
+
+export default connect(mapStateToProps, {toggleSortDate})(BasicTable);

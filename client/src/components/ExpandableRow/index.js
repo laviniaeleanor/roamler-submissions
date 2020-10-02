@@ -1,4 +1,6 @@
 import React from 'react';
+import {makeStyles} from '@material-ui/core/styles';
+ 
 import {
   TableCell,
   TableRow,
@@ -8,24 +10,39 @@ import {
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+const useStyles = makeStyles({
+  tableRow: {
+    fontFamily: 'Montserrat',
+    fontSize: 12,
+    fontWeight: 400,
+    color: '#555'
+  }
+});
+
 const ExpandableRow = props => {
   const {row} = props;
   const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
 
   return (
     <React.Fragment>
-      <TableRow>
-        <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
+      <TableRow className={classes.tableRow}>
         <TableCell component="th" scope="row" align="right">
           {row.number}
         </TableCell>
-        <TableCell>{row.date}</TableCell>
+        <TableCell>
+          {row.date}
+        </TableCell>
         <TableCell>{row.time}</TableCell>
         <TableCell>{row.address}</TableCell>
+        <TableCell align="right">
+          <IconButton
+            aria-label="expand row" 
+            size="small"
+            onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

@@ -6,13 +6,13 @@ export const FETCH_SUBMISSIONS = 'FETCH_SUBMISSIONS';
 export const SUBMISSIONS_SUCCESS = 'SUBMISSIONS_SUCCESS';
 export const SUBMISSIONS_FAILURE = 'SUBMISSIONS_FAILURE';
 
-export const getSubmissions = (page = 1) => dispatch => {
+export const getSubmissions = ({params}) => dispatch => {
   dispatch({type: FETCH_SUBMISSIONS});
-
   request
-    .get(`${baseUrl}/submissions/${page}`)
+    .get(`${baseUrl}/submissions`)
+    .query({params})
+    .set('accept', 'json')
     .then(res => {
-      console.log(res)
       dispatch({
         type: SUBMISSIONS_SUCCESS,
         payload: res.body

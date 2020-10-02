@@ -4,7 +4,9 @@ import {
   SUBMISSIONS_FAILURE
 } from '../actions/submissions';
 
-export const submissions = (state = {data: []}, {type, payload}) => {
+const initialState = {data : []};
+
+export const submissions = (state = initialState, {type, payload}) => {
   switch(type) {
     case FETCH_SUBMISSIONS:
     return {...state, loading: true};

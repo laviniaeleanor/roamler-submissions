@@ -6,36 +6,42 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import {getSubmissions} from '../../store/actions/submissions';
+import {setPage} from '../../store/actions/params';
 
 const TableNavigation = props => {
-  const [page, setPage] = React.useState(1);
-  const [isFirst, setIsFirst] = React.useState(true);
-  const [isLast, setIsLast] = React.useState(false);
-  const {pages, getSubmissions} = props;
+  const {params, pages, getSubmissions, setPage} = props;
+  const {page: {isLast, isFirst, num}} = params;
 
   React.useEffect(() => {
-    setIsFirst(page === 1);
-    setIsLast(page === pages);
-    getSubmissions(page);
-  }, [page, pages, getSubmissions]);
+    getSubmissions({params});
+  }, [params, getSubmissions]);
 
   const goToNextPage = () => {
     if (!isLast) {
-      setPage(page + 1);
+      setPage({
+        num: num + 1,
+        isLast: num + 1 === pages,
+        isFirst: false
+      });
     }
   }
 
   const goToPrevPage = () => {
     if (!isFirst) {
-      setPage(page - 1);
+      setPage({
+        num: num - 1,
+        isLast: false,
+        isFirst: num - 1 === 1
+      });
     }
   }
 
   return (
-    <>
+    <div style={{display: 'flex'}}>
       <Button
         variant='outlined'
         color='secondary'
+        style={{marginRight: 8}}
         onClick={goToPrevPage}
         disabled={isFirst}
       >
@@ -49,8 +55,13 @@ const TableNavigation = props => {
       >
         <NavigateNextIcon />
       </Button>
-      </>
-      )
-    }
+    </div>
+  )
+}
 
-export default connect(null, {getSubmissions})(TableNavigation);
+const mapStateToProps = state => ({
+  params: state.params,
+  pages: state.total.pages
+});
+
+export default connect(mapStateToProps, {getSubmissions, setPage})(TableNavigation);
