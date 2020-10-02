@@ -4,8 +4,7 @@ const {Answer, Submission, Question} = db.models;
 
 exports.getSubmissions = params => {
   const {order, page, searchTerm} = params;
-  const {num = 1} = page;
-  const offset = num > 0 ? (num - 1) * 10 : 0;
+  const offset = page > 0 ? (page - 1) * 10 : 0;
 
   let searchOptions = {
     order: [

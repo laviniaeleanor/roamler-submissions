@@ -10,7 +10,14 @@ import {setPage} from '../../store/actions/params';
 
 const TableNavigation = props => {
   const {params, pages, getSubmissions, setPage} = props;
-  const {page: {isLast, isFirst, num}} = params;
+  const {page} = params;
+  const [isFirst, setIsFirst] = React.useState(true);
+  const [isLast, setIsLast] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsFirst(page === 1);
+    setIsLast(page === pages);
+  }, [page, pages])
 
   React.useEffect(() => {
     getSubmissions({params});
@@ -18,21 +25,13 @@ const TableNavigation = props => {
 
   const goToNextPage = () => {
     if (!isLast) {
-      setPage({
-        num: num + 1,
-        isLast: num + 1 === pages,
-        isFirst: false
-      });
+      setPage(page + 1);
     }
   }
 
   const goToPrevPage = () => {
     if (!isFirst) {
-      setPage({
-        num: num - 1,
-        isLast: false,
-        isFirst: num - 1 === 1
-      });
+      setPage(page - 1);
     }
   }
 
