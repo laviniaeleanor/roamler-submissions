@@ -7,7 +7,7 @@ const {getSubmissions} = require('./services/submissions');
 
 const app = express();
 const port = 4000;
-const eraseDatabaseOnSync = false;
+const eraseDatabaseOnSync = true;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
