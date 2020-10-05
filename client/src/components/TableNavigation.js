@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {NavigationButton, Container} from '../styles';
+import {NavigationButton, Container} from '../styled-components';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import {setPage} from '../../store/actions/params';
+import {setPage} from '../store/actions/params';
 
 const TableNavigation = props => {
   const {page, pages, setPage} = props;

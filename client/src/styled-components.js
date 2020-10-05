@@ -10,12 +10,10 @@ import {KeyboardDatePicker} from '@material-ui/pickers';
 
 export const Container = styled.div`
   height: ${p => p.full ? '100vh' : 'auto'};
-  font-family: Montserrat;
-  color: #555;
 
   p {
-    max-width: 300px;
-    font-size: 12px;
+    max-width: 200px;
+    font-size: 14px;
   }
 
   h3 {
@@ -114,17 +112,13 @@ export const Logo = styled.img`
 `;
 
 export const BasicTable = styled(Table)`
-    max-width: 800px;
-    height: 100%;
-
-    * {
-      font-family: Montserrat !important;
-    }
-    `;
+  max-width: 800px;
+  height: 100%;
+`;
     
 export const Cell = styled(TableCell)`
   border: none;
-  font-size: 12px;
+  font-size: 14px;
   padding: 8px;
   
   ${p => p.noPadding && `
@@ -134,7 +128,6 @@ export const Cell = styled(TableCell)`
   ${p => p.head && `
     font-size: 14px;
     font-weight: 700;
-    color: #555;
   `}
 `;
 
@@ -161,4 +154,8 @@ export const DatePicker = styled(KeyboardDatePicker)`
   width: 48%;
   margin: 8px 0 0;
   max-width: 250px;
+
+  input {
+    font-size: 14px;
+  }
 `;

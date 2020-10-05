@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {Container, Logo} from '../styles';
-import AppBar from '../AppBar';
-import Header from '../Header';
-import Table from '../Table';
-import Error from '../Error';
-import load from './roamler.svg';
+import {Container, Logo} from '../styled-components';
+import AppBar from './AppBar';
+import Header from './Header';
+import Table from './Table';
+import Error from './Error';
+import load from '../assets/roamler.svg';
 
-import {getSubmissions} from '../../store/actions/submissions';
+import {getSubmissions} from '../store/actions/submissions';
 
 const AppComponent = props => {
   const {submissions: {error, data,loading}, getSubmissions, params} = props;

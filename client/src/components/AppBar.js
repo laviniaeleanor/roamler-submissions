@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppBar, Toolbar} from '@material-ui/core';
-import {Logo} from '../styles';
+import {Logo} from '../styled-components';
 
 export default function AppBarComponent() {
   return (

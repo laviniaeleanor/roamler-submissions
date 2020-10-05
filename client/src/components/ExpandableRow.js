@@ -1,8 +1,8 @@
 import React from 'react';
  
 import {IconButton, Collapse} from '@material-ui/core';
-import {Cell, Row} from '../styles';
-import {Container} from '../styles';
+import {Cell, Row} from '../styled-components';
+import {Container} from '../styled-components';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
@@ -36,7 +36,6 @@ const ExpandableRow = props => {
           <Collapse in={open} timeout="auto" unmountOnExit>
 
             <Container subInfo>
-              <h3>Submission details:</h3>
               {row.answers.map(({answer, question}, i) => {
                 return (
                   <p key={i}>

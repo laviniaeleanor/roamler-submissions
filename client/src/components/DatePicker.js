@@ -3,7 +3,7 @@ import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 
 import {MuiPickersUtilsProvider} from '@material-ui/pickers';
-import {DatePicker} from '../styles';
+import {DatePicker} from '../styled-components';
 
 export default function(props) {
   const {label, value, onChange} = props;

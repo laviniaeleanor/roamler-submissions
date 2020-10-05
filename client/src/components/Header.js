@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import SearchField from '../SearchField';
-import DatePicker from '../DatePicker';
+import SearchField from './SearchField';
+import DatePicker from './DatePicker';
 
-import {setFromDate, setToDate} from '../../store/actions/params';
-import {Container} from '../styles';
+import {setFromDate, setToDate} from '../store/actions/params';
+import {Container} from '../styled-components';
 
 const Header = props => {
   const {count, fromDate, toDate, setFromDate, setToDate} = props;

@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 
-import {setSearchTerm} from '../../store/actions/params';
+import {setSearchTerm} from '../store/actions/params';
 
 const SearchField = props => {
   const {searchTerm, setSearchTerm} = props;

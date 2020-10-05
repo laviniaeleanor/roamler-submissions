@@ -11,12 +11,12 @@ import {
   Container,
   BasicTable,
   Cell
-} from '../styles.js';
-import ExpandableRow from '../ExpandableRow';
-import TableNavigation from '../TableNavigation';
+} from '../styled-components.js';
+import ExpandableRow from './ExpandableRow';
+import TableNavigation from './TableNavigation';
 
-import {formatData, getDate} from '../../utils';
-import {toggleSortDate} from '../../store/actions/params';
+import {formatData, getDate} from '../utils';
+import {toggleSortDate} from '../store/actions/params';
 
 const Table = props => {
   const {submissions, pages, params: {order, searchTerm, fromDate, toDate}, toggleSortDate} = props;
