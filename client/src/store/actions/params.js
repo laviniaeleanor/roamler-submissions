@@ -19,11 +19,15 @@ export const setSearchTerm = searchTerm => dispatch => {
 export const setFromDate = fromDate => dispatch => {
   if (Date.parse(fromDate)) {
     dispatch({type: SET_FROM_DATE, payload: new Date(fromDate).toISOString()});
+  } else if (!fromDate) {
+    dispatch({type: SET_FROM_DATE, payload: null});
   }
 };
 
 export const setToDate = toDate => dispatch => {
   if (Date.parse(toDate)) {
     dispatch({type: SET_TO_DATE, payload: new Date(toDate).toISOString()});
+  } else if (!toDate) {
+    dispatch({type: SET_TO_DATE, payload: null});
   }
 };

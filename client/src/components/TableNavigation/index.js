@@ -1,16 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {Button} from '@material-ui/core';
+import {NavigationButton, Container} from '../styles';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import {getSubmissions} from '../../store/actions/submissions';
 import {setPage} from '../../store/actions/params';
 
 const TableNavigation = props => {
-  const {params, pages, getSubmissions, setPage} = props;
-  const {page} = params;
+  const {page, pages, setPage} = props;
   const [isFirst, setIsFirst] = React.useState(true);
   const [isLast, setIsLast] = React.useState(true);
 
@@ -18,10 +16,6 @@ const TableNavigation = props => {
     setIsFirst(page === 1);
     setIsLast(page === pages);
   }, [page, pages])
-
-  React.useEffect(() => {
-    getSubmissions({params});
-  }, [params, getSubmissions]);
 
   const goToNextPage = () => {
     if (!isLast) {
@@ -36,32 +30,26 @@ const TableNavigation = props => {
   }
 
   return (
-    <div style={{display: 'flex', position: 'sticky', top: 100}}>
-      <Button
-        variant='outlined'
-        color='primary'
-        style={{marginRight: 8, minWidth: 0, padding: 5}}
+    <Container flex>
+      <NavigationButton
         onClick={goToPrevPage}
         disabled={isFirst}
       >
         <NavigateBeforeIcon />
-      </Button>
-      <Button
-        style={{minWidth: 0, padding: 5}}
-        variant='outlined'
-        color='primary'
+      </NavigationButton>
+      <NavigationButton
         onClick={goToNextPage}
         disabled={isLast}
       >
         <NavigateNextIcon />
-      </Button>
-    </div>
+      </NavigationButton>
+    </Container>
   )
 }
 
 const mapStateToProps = state => ({
-  params: state.params,
+  page: state.params.page,
   pages: state.total.pages
 });
 
-export default connect(mapStateToProps, {getSubmissions, setPage})(TableNavigation);
+export default connect(mapStateToProps, {setPage})(TableNavigation);

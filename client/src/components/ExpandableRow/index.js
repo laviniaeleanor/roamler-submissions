@@ -1,65 +1,57 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
  
-import {
-  TableCell,
-  TableRow,
-  IconButton,
-  Collapse
-} from '@material-ui/core';
+import {IconButton, Collapse} from '@material-ui/core';
+import {Cell, Row} from '../styles';
+import {Container} from '../styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
-const useStyles = makeStyles({
-  tableRow: {
-    fontFamily: 'Montserrat',
-    fontSize: 12,
-    fontWeight: 400,
-    color: '#555',
-    borderTop: '1px solid rgba(224, 224, 224, 1)',
-    borderBottom: 'none',
-    cursor: 'pointer'
-  }
-});
 
 const ExpandableRow = props => {
   const {row} = props;
   const [open, setOpen] = React.useState(false);
-  const classes = useStyles();
 
   return (
     <React.Fragment>
-      <TableRow className={classes.tableRow} onClick={() => setOpen(!open)}>
-        <TableCell component="th" scope="row" align="right" style={{border: 'none'}}>
-          {row.number}
-        </TableCell>
-        <TableCell style={{border: 'none'}}>
-          {row.date}
-        </TableCell>
-        <TableCell
-          colSpan={4}
-          style={{border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
-        >
-          {row.address}
-          <IconButton
-            aria-label="expand row" 
-            size="small"
-            onClick={() => setOpen(!open)}>
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0, border: 'none'}} colSpan={6}>
+      <Row onClick={() => setOpen(!open)}>
+
+        <Cell align="center">{row.number}</Cell>
+        <Cell>{row.date}</Cell>
+
+        <Cell colSpan={2}>
+          <Container flex spaceBetween>
+            <p>{row.address}</p>
+            <IconButton
+              aria-label="expand row" 
+              size="small"
+              onClick={() => setOpen(!open)}>
+              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            </IconButton>
+          </Container>
+        </Cell>
+
+      </Row>
+
+      <Row noBorder>
+        <Cell colSpan={4} noPadding>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <div>
-              {row.answers.map((answer, i) => {
-                return <div key={i}>{i + 1}. <strong>{answer.question}</strong> - {answer.answer}</div>
+
+            <Container subInfo>
+              <h3>Submission details:</h3>
+              {row.answers.map(({answer, question}, i) => {
+                return (
+                  <p key={i}>
+                    {i + 1}. 
+                    <strong> {question}</strong>
+                    {answer && answer !== 'NULL' && ` - ${answer}`}
+                  </p>
+                )
               })}
-            </div>
+            </Container>
+
           </Collapse>
-        </TableCell>
-      </TableRow>
+        </Cell>
+      </Row>
+
     </React.Fragment>
   );
 }

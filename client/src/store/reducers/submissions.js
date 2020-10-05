@@ -4,7 +4,7 @@ import {
   SUBMISSIONS_FAILURE
 } from '../actions/submissions';
 
-const initialState = {data : []};
+const initialState = {loading : true};
 
 export const submissions = (state = initialState, {type, payload}) => {
   switch(type) {
