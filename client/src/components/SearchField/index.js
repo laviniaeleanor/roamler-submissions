@@ -16,7 +16,6 @@ const SearchField = props => {
     <TextField
       label='Search by address'
       id='outlined-basic'
-      color='secondary'
       value={searchTerm}
       onChange={searchAddresses}
     />

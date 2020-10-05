@@ -39,7 +39,7 @@ const TableNavigation = props => {
     <div style={{display: 'flex', position: 'sticky', top: 100}}>
       <Button
         variant='outlined'
-        color='secondary'
+        color='primary'
         style={{marginRight: 8, minWidth: 0, padding: 5}}
         onClick={goToPrevPage}
         disabled={isFirst}
@@ -49,7 +49,7 @@ const TableNavigation = props => {
       <Button
         style={{minWidth: 0, padding: 5}}
         variant='outlined'
-        color='secondary'
+        color='primary'
         onClick={goToNextPage}
         disabled={isLast}
       >

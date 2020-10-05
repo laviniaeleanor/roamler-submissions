@@ -3,7 +3,7 @@ import {AppBar, Toolbar} from '@material-ui/core';
 
 export default function AppBarComponent() {
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" color="secondary">
       <Toolbar>
         <img 
           alt="Roamler logo"
