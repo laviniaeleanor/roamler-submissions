@@ -80,21 +80,21 @@ const Table = props => {
           <>
             <TableHead>
               <TableRow>
-                <Cell head align="center">ID</Cell>
+                <Cell align="center"><strong>ID</strong></Cell>
 
-                <Cell head>
+                <Cell>
                   <TableSortLabel
                     active
                     direction={order}
                     onClick={toggleSortDate}
                     >
-                    Date
+                    <strong>Date</strong>
                   </TableSortLabel>
                 </Cell>
 
-                <Cell head>
+                <Cell>
                   <Container spaceBetween>
-                    Address
+                    <strong>Address</strong>
                     <TableNavigation pages={pages}/>
                   </Container>
                 </Cell>

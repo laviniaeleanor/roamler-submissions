@@ -1,7 +1,7 @@
 import React from 'react';
  
 import {IconButton, Collapse} from '@material-ui/core';
-import {Cell, Row} from '../styled-components';
+import {Cell, Row, InfoRow} from '../styled-components';
 import {Container} from '../styled-components';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -11,18 +11,18 @@ const ExpandableRow = props => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <React.Fragment>
+    <>
       <Row onClick={() => setOpen(!open)}>
 
-        <Cell align="center">{row.number}</Cell>
+        <Cell align='center'>{row.number}</Cell>
         <Cell>{row.date}</Cell>
 
         <Cell colSpan={2}>
           <Container flex spaceBetween>
             <p>{row.address}</p>
             <IconButton
-              aria-label="expand row" 
-              size="small"
+              aria-label='expand row' 
+              size='small'
               onClick={() => setOpen(!open)}>
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
@@ -31,9 +31,9 @@ const ExpandableRow = props => {
 
       </Row>
 
-      <Row noBorder>
-        <Cell colSpan={4} noPadding>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+      <InfoRow>
+        <Cell colSpan={4} padding='none'>
+          <Collapse in={open} timeout='auto' unmountOnExit>
 
             <Container subInfo>
               {row.answers.map(({answer, question}, i) => {
@@ -49,9 +49,9 @@ const ExpandableRow = props => {
 
           </Collapse>
         </Cell>
-      </Row>
+      </InfoRow>
 
-    </React.Fragment>
+    </>
   );
 }
 

@@ -4,7 +4,8 @@ import {
   Table,
   TableCell,
   TableRow,
-  Button
+  Button,
+  Toolbar
 } from '@material-ui/core';
 import {KeyboardDatePicker} from '@material-ui/pickers';
 
@@ -86,7 +87,12 @@ export const Container = styled.div`
     flex-wrap: wrap;
     align-items: baseline;
   `}
-  
+
+  ${p => p.padding && `padding: ${p.padding};`}
+
+  ${p => p.map && `
+    height: 50vh;
+  `}
 `;
 
 export const Logo = styled.img`
@@ -120,25 +126,16 @@ export const Cell = styled(TableCell)`
   border: none;
   font-size: 14px;
   padding: 8px;
-  
-  ${p => p.noPadding && `
-  padding: 0;
-  `}
-  
-  ${p => p.head && `
-    font-size: 14px;
-    font-weight: 700;
-  `}
 `;
 
 export const Row = styled(TableRow)`
   border-top: 1px solid rgba(224, 224, 224, 1);
   border-bottom: none;
   cursor: pointer;
+`;
 
-  ${p => p.noBorder && `
-    border: none;
-  `}
+export const InfoRow = styled(Row)`
+  border: none;
 `;
 
 export const NavigationButton = styled(Button).attrs({
@@ -150,6 +147,12 @@ export const NavigationButton = styled(Button).attrs({
   margin-left: 8px;
 `;
 
+export const ViewButton = styled(Button).attrs({
+  variant: 'outlined',
+  color: 'primary'
+})`
+`;
+
 export const DatePicker = styled(KeyboardDatePicker)`
   width: 48%;
   margin: 8px 0 0;
@@ -158,4 +161,9 @@ export const DatePicker = styled(KeyboardDatePicker)`
   input {
     font-size: 14px;
   }
+`;
+
+export const ToolBar = styled(Toolbar)`
+  display: flex;
+  justify-content: space-between;
 `;
