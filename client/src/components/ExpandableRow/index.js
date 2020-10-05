@@ -15,7 +15,10 @@ const useStyles = makeStyles({
     fontFamily: 'Montserrat',
     fontSize: 12,
     fontWeight: 400,
-    color: '#555'
+    color: '#555',
+    borderTop: '1px solid rgba(224, 224, 224, 1)',
+    borderBottom: 'none',
+    cursor: 'pointer'
   }
 });
 
@@ -26,16 +29,18 @@ const ExpandableRow = props => {
 
   return (
     <React.Fragment>
-      <TableRow className={classes.tableRow}>
-        <TableCell component="th" scope="row" align="right">
+      <TableRow className={classes.tableRow} onClick={() => setOpen(!open)}>
+        <TableCell component="th" scope="row" align="right" style={{border: 'none'}}>
           {row.number}
         </TableCell>
-        <TableCell>
+        <TableCell style={{border: 'none'}}>
           {row.date}
         </TableCell>
-        <TableCell>{row.time}</TableCell>
-        <TableCell>{row.address}</TableCell>
-        <TableCell align="right">
+        <TableCell
+          colSpan={4}
+          style={{border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
+        >
+          {row.address}
           <IconButton
             aria-label="expand row" 
             size="small"
@@ -45,7 +50,7 @@ const ExpandableRow = props => {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0, border: 'none'}} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div>
               {row.answers.map((answer, i) => {

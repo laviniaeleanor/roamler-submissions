@@ -31,7 +31,8 @@ const useStyles = makeStyles({
     fontFamily: 'Montserrat',
     fontSize: 16,
     fontWeight: 700,
-    color: '#555'
+    color: '#555',
+    border: 'none'
   }
 });
 
@@ -56,9 +57,11 @@ const BasicTable = props => {
                 Date
               </TableSortLabel>
             </TableCell>
-            <TableCell className={classes.tableHead}>Time</TableCell>
-            <TableCell className={classes.tableHead}>Address</TableCell>
-            <TableCell>
+            <TableCell
+              className={classes.tableHead}
+              style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
+            >
+              Address
               <TableNavigation pages={pages}/>
             </TableCell>
           </TableRow>

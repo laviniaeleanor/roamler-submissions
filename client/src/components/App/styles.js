@@ -19,7 +19,7 @@ export const Header = styled.div`
   h1 {
     font-weight: 300;
     font-family: 'Montserrat' !important;
-    font-size: 36px;
+    font-size: 32px;
     margin: 0;
     padding: 4;
     border-bottom: 1px solid #fff;
@@ -31,6 +31,6 @@ export const Header = styled.div`
     margin-top: 0;
     font-weight: 300;
     font-family: 'Montserrat' !important;
-    font-size: 30px;
+    font-size: 28px;
   }
 `;

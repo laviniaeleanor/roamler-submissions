@@ -36,17 +36,18 @@ const TableNavigation = props => {
   }
 
   return (
-    <div style={{display: 'flex'}}>
+    <div style={{display: 'flex', position: 'sticky', top: 100}}>
       <Button
         variant='outlined'
         color='secondary'
-        style={{marginRight: 8}}
+        style={{marginRight: 8, minWidth: 0, padding: 5}}
         onClick={goToPrevPage}
         disabled={isFirst}
       >
         <NavigateBeforeIcon />
       </Button>
       <Button
+        style={{minWidth: 0, padding: 5}}
         variant='outlined'
         color='secondary'
         onClick={goToNextPage}

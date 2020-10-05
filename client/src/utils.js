@@ -1,5 +1,5 @@
 export const getDate = date => {
-  return new Date(date).toISOString().split('T')[0];
+  return new Date(date).toLocaleDateString('nl-NL');
 };
 
 export const getTime = date => {
