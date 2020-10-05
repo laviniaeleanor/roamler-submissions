@@ -1,11 +1,11 @@
 import React from 'react';
 import {Container} from '../styled-components';
 
-export default function Error() {
+export default function() {
   return (
     <Container full background flex>
 
-      <Container flex col>
+      <Container col padding={'16px'}>
         <h1>Oops...</h1>
         <span>
           It seems like there was a problem fetching the submissions. <br/>

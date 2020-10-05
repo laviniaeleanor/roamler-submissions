@@ -11,7 +11,9 @@ import load from '../assets/roamler.svg';
 import {getSubmissions} from '../store/actions/submissions';
 
 const AppComponent = props => {
-  const {submissions: {error, data,loading}, getSubmissions, params} = props;
+  const {submissions: {error, data, loading}, getSubmissions, params} = props;
+
+  const [mapView, setMapView] = React.useState(false);
 
   React.useEffect(() => {
     getSubmissions({params});
@@ -19,19 +21,27 @@ const AppComponent = props => {
 
   return (
     <Container full>
-      <AppBar />
+      <AppBar
+        mapView={mapView}
+        setMapView={() => setMapView(!mapView)}
+        disableViewButton={loading || error || !data.length}
+      />
+
       {error && <Error />}
 
       {loading && !data && 
         <Container background flex full>
-          <Logo loading src={load}/>
+          <Logo loading="true" src={load}/>
         </Container>
       }
 
       {data && 
         <Container>
           <Header />
-          <Table />
+          <Table
+            mapView={mapView}
+            goToList={() => setMapView(false)}
+          />
         </Container>
       }
     </Container>
