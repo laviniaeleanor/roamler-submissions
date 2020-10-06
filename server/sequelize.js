@@ -31,10 +31,10 @@ const Submission = db.define('submission', {
     type: Sequelize.DATE
   },
   Latitude: {
-    type: Sequelize.INTEGER
+    type: Sequelize.FLOAT
   },
   Longitude: {
-    type: Sequelize.INTEGER
+    type: Sequelize.FLOAT
   },
   Address: {
     type: Sequelize.STRING

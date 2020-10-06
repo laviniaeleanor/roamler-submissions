@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import roamler from './assets/roamler.svg';
 
 import {
   Table,
@@ -95,7 +96,10 @@ export const Container = styled.div`
   `}
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img.attrs(p => ({
+  src: p.full ? 'https://www.roamler.com/assets/logo-roamler-main-15102f48afec6394db0c63386b0d72d9.svg' : roamler,
+  alt: p.marker ? 'Map marker' : 'Roamler logo' 
+}))`
   height: 38px;
   
   ${p => p.loading && `

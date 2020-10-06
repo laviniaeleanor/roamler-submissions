@@ -6,7 +6,6 @@ import AppBar from './AppBar';
 import Header from './Header';
 import Table from './Table';
 import Error from './Error';
-import load from '../assets/roamler.svg';
 
 import {getSubmissions} from '../store/actions/submissions';
 
@@ -31,7 +30,7 @@ const AppComponent = props => {
 
       {loading && !data && 
         <Container background flex full>
-          <Logo loading="true" src={load}/>
+          <Logo loading="true"/>
         </Container>
       }
 
