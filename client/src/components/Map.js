@@ -5,6 +5,8 @@ import Marker from './Marker';
 
 import {Container} from '../styled-components';
 
+const mapsAPIkey = process.env.GOOGLE_MAPS_API || 'AIzaSyD_nCryCz1F2qroU7ALIs4-aYm8-g32K1I';
+
 const getMapBounds = (maps, places) => {
   const bounds = new maps.LatLngBounds();
 
@@ -43,7 +45,7 @@ const Map = props => {
           lng: 4.90
         }}
         bootstrapURLKeys={{
-          key: 'AIzaSyD_nCryCz1F2qroU7ALIs4-aYm8-g32K1I'
+          key: mapsAPIkey
         }}
         onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, data)}
       >
