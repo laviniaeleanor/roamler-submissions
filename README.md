@@ -40,3 +40,4 @@ The user can:
 * Improve usability of map
 * Improve table design and functionality 
 * Add autocomplete to address search bar
+* Improve Marker component to show location details on map
