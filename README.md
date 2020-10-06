@@ -1,6 +1,6 @@
 # Roamler subsmissions
 
-Example app to display information about Roamler users submissions. 
+Responsive app to display example information about Roamler users submissions. 
 
 ![alt text](./Roamler_preview.jpeg "Roamler preview")
 
@@ -29,7 +29,7 @@ The user can:
 
 ## How to run
 1. Pull the repo
-2. `yarn start` on the server. Make sure you have a postgres instance running on port `5432`. You can add a custom db url in the env config. On start, seed data will be loaded in the db
+2. `yarn start` on the server. Make sure you have a postgres instance running on port `5432`. You can add a custom db url in the env config. On start, seed data will be loaded to the db
 3. `yarn start` on the client
 4. The app uses a google maps api key meant for developement purposes only, you can add your own key in the env config
 
